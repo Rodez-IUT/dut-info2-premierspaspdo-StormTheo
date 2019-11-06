@@ -1,7 +1,7 @@
-# INFO2-PremiersPasPDO
+﻿# INFO2-PremiersPasPDO
 
-### NOM : DOE
-### Prénom : John
+### NOM : BOUCHOUIEFF
+### Prénom : Théo
 ### Groupe de TP : 
 - [X] TD1
 - [ ] TD2
