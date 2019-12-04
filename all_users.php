@@ -20,12 +20,12 @@
 <?php
 // Connexion to the database
 $host = 'localhost';
-$port = '8889';
-$db = 'my_activities';
+$port = '8080';
+$db = 'basetest';
 $user = 'root';
 $pass = 'root';
 $charset = 'utf8mb4';
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host; port=$port; dbname=$db; charset=$charset";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
