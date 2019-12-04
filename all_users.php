@@ -1,33 +1,42 @@
-<html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title>Les excuses du lundi matin</title>
-	  
-		<link href="css/monStyle.css" rel="stylesheet">
-		
-		<!-- Bootstrap CSS -->
-		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-	</head>
-	<body>
-		<?php 
-			$host='localhost';
-			$db='my_activities';
-			$user='root';
-			$pass='root';
-			$charset='utf8mb4';
-			$dsn="mysql:host=$host;dbname=$db;charset=$charset";
-			$options=[
-				PDO::ATTR_ERRMODE				=>PDO::ERRMODE_EXCEPTION,
-				PDO::ATTR_DEFAULT_FETCH_MODE	=>PDO::FETCH_ASSOC,
-				PDO::ATTR_EMULATE_PREPARES		=>false,];
-			try {
-				$pdo = new PDO($dsn, $user, $pass, $options);
-			} catch (PDOException $e) {
-			echo $e->getMessage();
-			throw new PDOException($e->getMessage(), (int)$e->getCode());
-			}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
 
+<?php
+// Connexion to the database
+$host = 'localhost';
+$port = '8889';
+$db = 'my_activities';
+$user = 'root';
+$pass = 'root';
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false
+];
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+    throw new PDOException($e->getMessage(), (int)$e->getCode());
+}
 function get($name) {
     return isset($_GET[$name]) ? $_GET[$name] : null;
 }
@@ -69,7 +78,7 @@ function askDeletion($pdo){
 <form action="all_users.php" method="get">
     <input hidden name="action" value="searchUsers">
     Start with letter:
-    <input name="start_letter" type="text" value="<?php echo $_GET["start_letter"] ?>">
+    <input name="start_letter" type="text" value="<?php echo get("start_letter") ?>">
     and status is:
     <select name="status_id">
         <option value="1" <?php if (get('status_id') == 1) echo 'selected' ?>>Waiting for account validation</option>
